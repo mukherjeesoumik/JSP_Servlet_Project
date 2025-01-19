@@ -206,7 +206,7 @@ public class HelloServlet extends HttpServlet {
 <body>
 <div class="container">
     <h1>Registration Form</h1>
-    <form action="helloservlet" method="POST">
+    <form action="helloservlet" method="POST">  
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required>
 
