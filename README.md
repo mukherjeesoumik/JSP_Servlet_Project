@@ -252,5 +252,4 @@ public class HelloServlet extends HttpServlet {
 
 ```
 
-// Soumik Mukherjee
-<a id=''>Soumik Mukherjee</a>
+<a id='ssFeatures'>Soumik Mukherjee</a>
