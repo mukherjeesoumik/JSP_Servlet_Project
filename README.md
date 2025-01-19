@@ -16,7 +16,7 @@ MyApp
 │       └── webapp
 │           ├── WEB-INF
 │           │   └── web.xml
-│           └── index.html
+│           └── index.jsp
 ├── pom.xml
 
 ```
