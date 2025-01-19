@@ -319,7 +319,7 @@ public class HelloServlet extends HttpServlet {
 
 ```
 
-#Database Table (create database in postgresql) -->DATABASE NAME=> employee 
+#Database Table (create database in postgresql) --> *DATABASE NAME=> employee
 ```cs
 CREATE TABLE users (
     id VARCHAR(255) PRIMARY KEY,
