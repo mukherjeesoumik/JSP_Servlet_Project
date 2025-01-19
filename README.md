@@ -1,7 +1,10 @@
 # JSP ( Java Server Pages )
 
+# Employee Management System
+
 JavaServer Pages (JSP) is a server-side technology that allows developers to create dynamic, platform-independent web applications. JSP is part of the Java EE (Enterprise Edition) platform and is an extension of the servlet technology.
 
+``` bash
 MyApp
 ├── src
 │   └── main
@@ -15,12 +18,13 @@ MyApp
 │           └── index.html
 ├── pom.xml
 
-
+```
 #pom.xml
 
 ```cs
+
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.example</groupId>
   <artifactId>MyApp</artifactId>
@@ -36,7 +40,7 @@ MyApp
       <scope>test</scope>
     </dependency>
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
+                             <!-- Jakarta Servlet API -->
 
     <!-- https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api -->
     <dependency>
@@ -46,17 +50,29 @@ MyApp
       <scope>provided</scope>
     </dependency>
 
-//////////////////////////////////////////////////////////////////////////////////////////////////
+                             <!-- PostgreSQL JDBC Driver -->
+    
+    <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>42.6.0</version>
+    </dependency>
+
+
+
 
   </dependencies>
   <build>
     <finalName>MyApp</finalName>
   </build>
 </project>
+
 ```
 #HelloServlet.java
 
 ```cs
+
 package com.soumikservlet;
 
 import jakarta.servlet.ServletException;
@@ -67,8 +83,13 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-@WebServlet("/helloservlet")
+@WebServlet("/hello")
 public class HelloServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -76,21 +97,14 @@ public class HelloServlet extends HttpServlet {
         super();
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html");
-
-        String name = request.getParameter("name");
-        String age = request.getParameter("age");
-        String rollnumber = request.getParameter("rollnumber");
-        String gender = request.getParameter("gender");
-        String countrycode = request.getParameter("countrycode");
-        String mobilenumber = request.getParameter("mobilenumber");
 
         PrintWriter out = response.getWriter();
         out.println("<html>");
         out.println("<head>");
-        out.println("<title>Registration Details</title>");
+        out.println("<title>All Records</title>");
         out.println("<style>");
         out.println("body { font-family: 'Montserrat', sans-serif; background: linear-gradient(135deg, #71b7e6, #9b59b6); color: #333; text-align: center; padding: 50px; }");
         out.println(".container { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); display: inline-block; width: 600px; }");
@@ -100,17 +114,48 @@ public class HelloServlet extends HttpServlet {
         out.println("</head>");
         out.println("<body>");
         out.println("<div class='container'>");
-        out.println("<h1>Registration Details</h1>");
-        out.println("<p><strong>Name:</strong> " + name + "</p>");
-        out.println("<p><strong>Age:</strong> " + age + "</p>");
-        out.println("<p><strong>Gender:</strong> " + gender + "</p>");
-        out.println("<p><strong>Mobile Number:</strong> " + countrycode + " " + mobilenumber + "</p>");
+        out.println("<h1>All Records</h1>");
+
+        String jdbcURL = "jdbc:postgresql://localhost:5432/employee";
+        String dbUser = "postgres";
+        String dbPassword = "123";
+
+        try {
+            Class.forName("org.postgresql.Driver");
+
+            try (Connection connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword)) {
+                showAllRecords(connection, out);
+            }
+        } catch (ClassNotFoundException e) {
+            out.println("<p>PostgreSQL JDBC Driver not found. Include it in your library path.</p>");
+            e.printStackTrace(out);
+        } catch (SQLException e) {
+            e.printStackTrace(out); // Print error details to the response
+        }
+
         out.println("</div>");
         out.println("</body>");
         out.println("</html>");
         out.close();
     }
+
+    private void showAllRecords(Connection connection, PrintWriter out) throws SQLException {
+        String sql = "SELECT * FROM users";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                out.println("<p><strong>ID:</strong> " + resultSet.getString("id") + "</p>");
+                out.println("<p><strong>Name:</strong> " + resultSet.getString("name") + "</p>");
+                out.println("<p><strong>Age:</strong> " + resultSet.getInt("age") + "</p>");
+                out.println("<p><strong>Gender:</strong> " + resultSet.getString("gender") + "</p>");
+                out.println("<p><strong>Mobile Number:</strong> " + resultSet.getString("mobilenumber") + "</p>");
+                out.println("<hr>");
+            }
+        }
+    }
 }
+
 
 ```
 #index.jsp
@@ -218,7 +263,10 @@ public class HelloServlet extends HttpServlet {
 <body>
 <div class="container">
     <h1>Registration Form</h1>
-    <form action="helloservlet" method="POST">  
+    <form action="hello" method="POST">
+        <label for="id">ID:</label>
+        <input type="text" id="id" name="id" required>
+
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required>
 
@@ -235,14 +283,17 @@ public class HelloServlet extends HttpServlet {
 
         <label for="mobilenumber">Mobile Number:</label>
         <div class="mobile-input-group">
-            <select class="country-code" id="countrycode" name="countrycode" required>
-                <option value="+91">IN +91</option>
-                <option value="+1">US +1</option>
-                <option value="+44">UK +44</option>
-                <option value="+61">AU +61</option>
-            </select>
-            <input type="tel" class="mobile-number" id="mobilenumber" name="mobilenumber"  required>
+            <input type="tel" class="mobile-number" id="mobilenumber" name="mobilenumber" required>
         </div>
+
+        <label for="action">Action:</label>
+        <select id="action" name="action" required>
+            <option value="create">Create</option>
+            <option value="update">Update</option>
+            <option value="delete">Delete</option>
+            <option value="show">Show</option>
+            <option value="showall">Show All</option>
+        </select>
 
         <button type="submit">Submit</button>
     </form>
@@ -251,6 +302,17 @@ public class HelloServlet extends HttpServlet {
 </html>
 
 ```
+
+#Database Table (create database in postgresql)
+
+CREATE TABLE users (
+    id VARCHAR(255) PRIMARY KEY,
+    name VARCHAR(255),
+    age INT,
+    gender VARCHAR(255),
+    mobilenumber VARCHAR(255)
+);
+
 #web.xml
 
 ```cs
@@ -261,6 +323,7 @@ public class HelloServlet extends HttpServlet {
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
 </web-app>
+
 
 ```
 
