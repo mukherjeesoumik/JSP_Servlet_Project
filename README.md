@@ -10,9 +10,9 @@ MyApp
 ├── src
 │   └── main
 │       ├── java
-│       │   └── com
-│       │       └── soumikservlet
-│       │           └── HelloServlet.java
+│       │   └── com.soumikservlet
+│       │        │
+│       │        └── HelloServlet.java
 │       └── webapp
 │           ├── WEB-INF
 │           │   └── web.xml
