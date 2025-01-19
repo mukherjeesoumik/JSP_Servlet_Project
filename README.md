@@ -1,6 +1,6 @@
 # JSP ( Java Server Pages )
 => download file ( apache-tomcat-10.1.34 )
-
+<img src="https://github.com/mukherjeesoumik/mukherjeesoumik/blob/main/0000.jpeg?raw=true" width="1920">
 # Employee Management System :
 
 JavaServer Pages (JSP) is a server-side technology that allows developers to create dynamic, platform-independent web applications. JSP is part of the Java EE (Enterprise Edition) platform and is an extension of the servlet technology.
@@ -371,5 +371,5 @@ Start Tomcat Server: Ensure the Tomcat server is running.
 
 Access Application: Open your web browser and navigate to http://localhost:8080/YourAppName to verify that your application is deployed and running correctly.
 ```
-<img src="https://github.com/mukherjeesoumik/mukherjeesoumik/blob/main/0000.jpeg?raw=true" >
+
 <a id='ssFeatures'>Soumik Mukherjee</a>
