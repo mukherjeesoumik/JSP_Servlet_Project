@@ -38,6 +38,8 @@ MyApp
       <artifactId>junit</artifactId>
       <version>3.8.1</version>
       <scope>test</scope>
+
+
     </dependency>
 
                              <!-- Jakarta Servlet API -->
@@ -60,9 +62,9 @@ MyApp
     </dependency>
 
 
-
-
   </dependencies>
+
+
   <build>
     <finalName>MyApp</finalName>
   </build>
@@ -303,16 +305,6 @@ public class HelloServlet extends HttpServlet {
 
 ```
 
-#Database Table (create database in postgresql)
-
-CREATE TABLE users (
-    id VARCHAR(255) PRIMARY KEY,
-    name VARCHAR(255),
-    age INT,
-    gender VARCHAR(255),
-    mobilenumber VARCHAR(255)
-);
-
 #web.xml
 
 ```cs
@@ -327,4 +319,14 @@ CREATE TABLE users (
 
 ```
 
+#Database Table (create database in postgresql)
+```cs
+CREATE TABLE users (
+    id VARCHAR(255) PRIMARY KEY,
+    name VARCHAR(255),
+    age INT,
+    gender VARCHAR(255),
+    mobilenumber VARCHAR(255)
+);
+```
 <a id='ssFeatures'>Soumik Mukherjee</a>
