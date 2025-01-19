@@ -1,9 +1,10 @@
 # JSP ( Java Server Pages )
+JavaServer Pages (JSP) is a server-side technology that allows developers to create dynamic, platform-independent web applications. JSP is part of the Java EE (Enterprise Edition) platform and is an extension of the servlet technology.
 => download file ( apache-tomcat-10.1.34 )
 <img src="https://github.com/mukherjeesoumik/mukherjeesoumik/blob/main/0000.jpeg?raw=true" width="1920">
 # Employee Management System :
 
-JavaServer Pages (JSP) is a server-side technology that allows developers to create dynamic, platform-independent web applications. JSP is part of the Java EE (Enterprise Edition) platform and is an extension of the servlet technology.
+
 
 ``` bash
 MyApp
