@@ -24,6 +24,8 @@ JavaServer Pages (JSP) is a server-side technology that allows developers to cre
       <scope>test</scope>
     </dependency>
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
     <!-- https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api -->
     <dependency>
       <groupId>jakarta.servlet</groupId>
@@ -31,6 +33,8 @@ JavaServer Pages (JSP) is a server-side technology that allows developers to cre
       <version>6.0.0</version>
       <scope>provided</scope>
     </dependency>
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
 
   </dependencies>
   <build>
