@@ -1,5 +1,6 @@
 #pom.xml
-
+\
+```cs
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
@@ -30,9 +31,10 @@
     <finalName>MyApp</finalName>
   </build>
 </project>
-
+```
 #HelloServlet
 
+```cs
 package com.soumikservlet;
 
 import jakarta.servlet.ServletException;
@@ -88,8 +90,10 @@ public class HelloServlet extends HttpServlet {
     }
 }
 
+```
 #index.jsp
 
+```cs
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -224,8 +228,10 @@ public class HelloServlet extends HttpServlet {
 </body>
 </html>
 
+```
 #web.xml
 
+```cs
 <!DOCTYPE web-app PUBLIC
  "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
@@ -233,3 +239,5 @@ public class HelloServlet extends HttpServlet {
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
 </web-app>
+
+```
