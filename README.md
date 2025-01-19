@@ -330,4 +330,44 @@ CREATE TABLE users (
     mobilenumber VARCHAR(255)
 );
 ```
+# Install Tomcat Server
+```cs
+Step 1: Install Tomcat Server
+Download and Install Tomcat: Download the Tomcat server from the official website and install it on your machine.
+
+Set Up Environment Variables: Set up the CATALINA_HOME and JAVA_HOME environment variables to point to your Tomcat and Java installations, respectively.
+
+Step 2: Install IntelliJ IDEA Plugin
+Open IntelliJ IDEA: Launch IntelliJ IDEA.
+
+Install Tomcat Plugin: Go to File > Settings > Plugins. Search for "Tomcat" and install the Tomcat plugin2.
+
+Step 3: Configure Tomcat Server in IntelliJ IDEA
+Open Settings: Go to File > Settings.
+
+Navigate to Tomcat: Go to Build, Execution, Deployment > Application Servers.
+
+Add New Server: Click the + button and select Tomcat Server.
+
+Configure Server: Set the Application server to the path where Tomcat is installed.
+
+Save Configuration: Click OK to save the configuration.
+
+Step 4: Create a New Project or Open an Existing One
+Create a New Project: Go to File > New > Project and select Web Application.
+
+Open Existing Project: Open your existing project if you already have one.
+
+Step 5: Deploy Your Application to Tomcat
+Open Project Structure: Go to File > Project Structure.
+
+Set Deployment Configuration: Go to Project: [Your Project Name] > Project Bases and set the deployment configuration to the Tomcat server you configured.
+
+Deploy Application: Right-click on your project in the Project view and select Run > Run 'Tomcat Server'.
+
+Step 6: Verify Deployment
+Start Tomcat Server: Ensure the Tomcat server is running.
+
+Access Application: Open your web browser and navigate to http://localhost:8080/YourAppName to verify that your application is deployed and running correctly.
+```
 <a id='ssFeatures'>Soumik Mukherjee</a>
