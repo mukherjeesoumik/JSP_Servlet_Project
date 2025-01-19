@@ -12,7 +12,7 @@ Tag Libraries: JSP supports custom tag libraries, which allow developers to crea
 Integration with Servlets: JSP pages can work seamlessly with servlets, enabling powerful and flexible web applications.
 
 Example:
-jsp
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -24,6 +24,8 @@ jsp
     <p>Current Date and Time: <%= new java.util.Date() %></p>
 </body>
 </html>
+
+        
 Servlets
 Servlets are Java programming language classes that extend the capabilities of servers that host applications accessed via a request-response programming model. Servlets can respond to any type of request, but they are most commonly used to extend the applications hosted by web servers.
 
@@ -37,7 +39,7 @@ Platform Independence: Servlets are written in Java, making them platform-indepe
 Scalability: Servlets can handle multiple requests concurrently and can be scaled to meet increasing demand.
 
 Example:
-java
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -49,7 +51,6 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/welcome")
 public class WelcomeServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
@@ -58,6 +59,8 @@ public class WelcomeServlet extends HttpServlet {
         out.println("</body></html>");
     }
 }
+
+
 Integration of JSP and Servlets
 JSP and servlets often work together in a web application. The servlet handles the business logic and processes the client requests, while the JSP page generates the response content.
 
@@ -72,18 +75,20 @@ JSP Rendering: The JSP page uses the attributes set by the servlet to generate t
 
 Example Integration:
 Servlet Code:
-java
+
+
 @WebServlet("/welcome")
 public class WelcomeServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("currentDate", new java.util.Date());
         request.getRequestDispatcher("/welcome.jsp").forward(request, response);
     }
 }
+
+
 JSP Code (welcome.jsp):
-jsp
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -95,4 +100,6 @@ jsp
     <p>Current Date and Time: <%= request.getAttribute("currentDate") %></p>
 </body>
 </html>
+
+    
 Together, JSP and servlets form a powerful combination for building dynamic and interactive web applications in Java.
