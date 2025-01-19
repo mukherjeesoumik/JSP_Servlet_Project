@@ -38,7 +38,7 @@ JavaServer Pages (JSP) is a server-side technology that allows developers to cre
   </build>
 </project>
 ```
-#HelloServlet
+#HelloServlet.java
 
 ```cs
 package com.soumikservlet;
